@@ -1,0 +1,39 @@
+TACTILE CONSTELLATION — AUDIO FILE NAMES
+Upload each MP3 to the repository ROOT (next to index.html).
+Naming: [book]-[characterKey].mp3
+A character with no file simply uses the browser voice instead.
+
+=== The Little Prince ===
+  prince-prince.mp3             ->  The Little Prince
+  prince-pilot.mp3              ->  The Pilot
+  prince-rose.mp3               ->  The Rose
+  prince-fox.mp3                ->  The Fox
+  prince-snake.mp3              ->  The Snake
+  prince-king.mp3               ->  The King
+  prince-vain.mp3               ->  The Vain Man
+  prince-businessman.mp3        ->  The Businessman
+  prince-lamplighter.mp3        ->  The Lamplighter
+  prince-geographer.mp3         ->  The Geographer
+  prince-desertFlower.mp3       ->  The Desert Flower
+
+=== Alice's Adventures in Wonderland ===
+  alice-alice.mp3               ->  Alice
+  alice-whiteRabbit.mp3         ->  The White Rabbit
+  alice-cheshireCat.mp3         ->  The Cheshire Cat
+  alice-madHatter.mp3           ->  The Mad Hatter
+  alice-queenHearts.mp3         ->  The Queen of Hearts
+  alice-kingHearts.mp3          ->  The King of Hearts
+  alice-marchHare.mp3           ->  The March Hare
+  alice-dormouse.mp3            ->  The Dormouse
+  alice-mockTurtle.mp3          ->  The Mock Turtle
+  alice-gryphon.mp3             ->  The Gryphon
+
+=== Charlotte's Web ===
+  charlotte-wilbur.mp3          ->  Wilbur
+  charlotte-charlotte.mp3       ->  Charlotte
+  charlotte-fern.mp3            ->  Fern Arable
+  charlotte-templeton.mp3       ->  Templeton
+  charlotte-arable.mp3          ->  Mr. Arable
+  charlotte-avery.mp3           ->  Avery Arable
+  charlotte-zuckerman.mp3       ->  Mr. Zuckerman
+  charlotte-goose.mp3           ->  The Goose

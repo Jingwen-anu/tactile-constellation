@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charlotte's Web — Tactile Constellation</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38' fill='%23E8B130'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-star">✦</span> Tactile Constellation
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#how">How it works</a></li>
+      <li><a href="index.html#shapes">Shapes</a></li>
+      <li><a href="index.html#books">All books</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="book-hero">
+  <div class="container">
+    <div class="book-hero-eyebrow">A Tactile Constellation</div>
+    <h1>Charlotte's Web</h1>
+    <p class="book-hero-author">by E. B. White · 1952</p>
+    <p class="book-hero-tagline">A pig named Wilbur is destined for the Christmas table. A spider named Charlotte decides he will not die. A story about friendship, words, and what one small life can mean.</p>
+  </div>
+</section>
+
+<section class="section board-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">The Map</div>
+      <h2>What it looks like, all built.</h2>
+    </div>
+    <div class="board-wrapper">
+      <svg class="board-svg" viewBox="0 0 400 280" id="board-svg" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="140" r="140" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+        <circle cx="200" cy="140" r="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <circle cx="200" cy="140" r="60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <circle cx="200" cy="140" r="30" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+        <line x1="195" y1="140" x2="205" y2="140" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+        <line x1="200" y1="135" x2="200" y2="145" stroke="rgba(255,255,255,0.4)" stroke-width="0.5"/>
+        <g id="board-content"></g>
+      </svg>
+    </div>
+    <div class="board-legend">
+      <div class="legend-item"><div class="legend-line red"></div> Red — Conflict</div>
+      <div class="legend-item"><div class="legend-line green"></div> Green — Friendship</div>
+      <div class="legend-item"><div class="legend-line yellow"></div> Yellow — Family / Love</div>
+    </div>
+  </div>
+</section>
+
+<section class="section assembly">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Step by step</div>
+      <h2>How to build this constellation.</h2>
+    </div>
+    <div style="max-width: 850px; margin: 0 auto;" id="assembly-steps"></div>
+  </div>
+</section>
+
+<section class="section characters-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Meet everyone</div>
+      <h2>All the characters in this story.</h2>
+      <p style="max-width: 600px; margin: 1rem auto 0; color: var(--ink-soft);">
+        Tap any character to read about them and hear their famous words.
+      </p>
+    </div>
+    <div class="characters-grid" id="characters-grid"></div>
+  </div>
+</section>
+
+<a href="index.html" class="back-link">← All books</a>
+
+<footer class="footer">
+  <div class="footer-content">
+    <h3>One book, many ways to feel it.</h3>
+    <p>Built from NLP analysis of the original text · Shape sizes proportional to character frequency</p>
+    <div class="footer-credit">Tactile Constellation · 2026 · Jingwen Guo</div>
+  </div>
+</footer>
+
+<script src="characters-data.js"></script>
+<script src="script.js"></script>
+<script>
+const BOOK_SLUG = "charlotte";
+const book = window.BOOKS[BOOK_SLUG];
+function characterUrl(charKey) {
+  return `character.html?book=${BOOK_SLUG}&char=${charKey}`;
+}
+function getCharPosition(charKey, charData, allChars) {
+  const positions = {};
+  const charsArray = Object.entries(allChars);
+  let mainKey = charsArray.find(([k, c]) => c.archetype === "Hero")?.[0];
+  if (!mainKey) mainKey = charsArray[0][0];
+  positions[mainKey] = { x: 200, y: 140 };
+  const innerL = charsArray.filter(([k, c]) => c.size === "L" && k !== mainKey);
+  innerL.forEach(([k], i) => {
+    const angle = (i / innerL.length) * Math.PI * 2 - Math.PI / 2 + 0.5;
+    positions[k] = { x: 200 + 52 * Math.cos(angle), y: 140 + 52 * Math.sin(angle) };
+  });
+  const middleM = charsArray.filter(([k, c]) => c.size === "M");
+  middleM.forEach(([k], i) => {
+    const angle = (i / middleM.length) * Math.PI * 2 + Math.PI / 6;
+    positions[k] = { x: 200 + 84 * Math.cos(angle), y: 140 + 84 * Math.sin(angle) };
+  });
+  const outerS = charsArray.filter(([k, c]) => c.size === "S");
+  outerS.forEach(([k], i) => {
+    const angle = (i / outerS.length) * Math.PI * 2;
+    positions[k] = { x: 200 + 115 * Math.cos(angle), y: 140 + 115 * Math.sin(angle) };
+  });
+  return positions[charKey];
+}
+function renderBoard() {
+  const svg = document.getElementById('board-content');
+  const allChars = book.characters;
+  const positions = {};
+  Object.keys(allChars).forEach(key => { positions[key] = getCharPosition(key, allChars[key], allChars); });
+  const drawnPairs = new Set();
+  Object.entries(allChars).forEach(([key, char]) => {
+    if (!char.relations) return;
+    char.relations.forEach(rel => {
+      const pairKey = [key, rel.to].sort().join('-');
+      if (drawnPairs.has(pairKey)) return;
+      drawnPairs.add(pairKey);
+      const from = positions[key]; const to = positions[rel.to];
+      if (!from || !to) return;
+      const colorMap = { red: '#D43F3F', green: '#4A9B6E', yellow: '#E8B130' };
+      const stroke = colorMap[rel.type] || '#FFFFFF';
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', from.x); line.setAttribute('y1', from.y);
+      line.setAttribute('x2', to.x); line.setAttribute('y2', to.y);
+      line.setAttribute('stroke', stroke); line.setAttribute('stroke-width', '1.5');
+      line.setAttribute('stroke-opacity', '0.7'); line.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(line);
+    });
+  });
+  Object.entries(allChars).forEach(([key, char]) => {
+    const pos = positions[key]; if (!pos) return;
+    const sizeMap = { L: 14, M: 10, S: 7 };
+    const size = sizeMap[char.size] || 10;
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(${pos.x}, ${pos.y})`);
+    g.style.cursor = 'pointer';
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bg.setAttribute('r', size + 2); bg.setAttribute('fill', '#FAF6EB');
+    bg.setAttribute('stroke', '#FFFFFF'); bg.setAttribute('stroke-width', '0.5');
+    g.appendChild(bg);
+    const shapeFn = SHAPES[char.shape];
+    if (shapeFn) {
+      const D = size * 2;
+      const tmp = document.createElement('div');
+      tmp.innerHTML = shapeFn(D, '#1A2138');
+      const innerSvg = tmp.querySelector('svg');
+      const wrapper = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      wrapper.setAttribute('x', -size);
+      wrapper.setAttribute('y', -size);
+      wrapper.setAttribute('width', D);
+      wrapper.setAttribute('height', D);
+      wrapper.setAttribute('viewBox', `0 0 ${D} ${D}`);
+      wrapper.setAttribute('overflow', 'visible');
+      while (innerSvg.firstChild) { wrapper.appendChild(innerSvg.firstChild); }
+      g.appendChild(wrapper);
+    }
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('y', size + 16);
+    text.setAttribute('fill', '#FAF6EB');
+    text.setAttribute('font-size', '6');
+    text.setAttribute('font-family', 'Nunito, sans-serif');
+    text.setAttribute('font-weight', '700');
+    text.setAttribute('paint-order', 'stroke');
+    text.setAttribute('stroke', '#1B4A6B');
+    text.setAttribute('stroke-width', '1.6');
+    text.setAttribute('stroke-linejoin', 'round');
+    text.textContent = char.name.replace('The ', '');
+    g.appendChild(text);
+    g.addEventListener('click', () => { window.location.href = characterUrl(key); });
+    svg.appendChild(g);
+  });
+}
+function renderAssemblySteps() {
+  const container = document.getElementById('assembly-steps');
+  book.assemblySteps.forEach((step, i) => {
+    const div = document.createElement('div');
+    div.className = 'assembly-step';
+    div.innerHTML = `
+      <div class="step-number">${String(i+1).padStart(2,'0')}</div>
+      <div class="step-content">
+        <h3>${step.title}</h3>
+        <p>${step.text}</p>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+function renderCharacterGrid() {
+  const grid = document.getElementById('characters-grid');
+  Object.entries(book.characters).forEach(([key, char]) => {
+    const card = document.createElement('a');
+    card.className = 'character-card';
+    card.href = characterUrl(key);
+    card.innerHTML = `
+      <div class="character-shape" data-shape="${char.shape}" data-size="60"></div>
+      <div class="character-name">${char.name}</div>
+      <div class="character-size-badge">${char.sizeLabel} · ${char.sizeDiameter}</div>
+    `;
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('.character-card [data-shape]').forEach(el => {
+    if (!el.querySelector('svg')) { renderShape(el, el.dataset.shape, parseInt(el.dataset.size) || 60); }
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  renderBoard(); renderAssemblySteps(); renderCharacterGrid();
+});
+
+</script>
+
+</body>
+</html>

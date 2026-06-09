@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tactile Constellation — A Touchable Map for Every Book</title>
+  <meta name="description" content="A multi-sensory character network kit for children with dyslexia. Translate any book into something you can hold.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38' fill='%23E8B130'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-star">✦</span> Tactile Constellation
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#shapes">Shapes</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero container">
+  <!-- Floating background shapes -->
+  <div class="hero-shape hero-shape-1" data-shape="star" data-size="200" data-color="#E8B130"></div>
+  <div class="hero-shape hero-shape-2" data-shape="heart" data-size="120" data-color="#E8718D"></div>
+  <div class="hero-shape hero-shape-3" data-shape="diamond" data-size="80" data-color="#5B8FB9"></div>
+  
+  <div class="hero-content">
+    <div class="hero-eyebrow">For Curious Hands & Wandering Minds</div>
+    <h1>
+      Hold a story <span class="accent">in your hands.</span>
+      <span class="star-dot">✦</span>
+    </h1>
+    <p class="hero-tagline">
+      A character network map you can <em>touch</em>. Designed for children with dyslexia — and for anyone who's ever wished books came with shapes.
+    </p>
+    <div class="hero-buttons">
+      <a href="#books" class="btn btn-primary">
+        Choose a book <span class="btn-arrow">→</span>
+      </a>
+      <a href="#how" class="btn btn-secondary">
+        How it works
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">The Idea</div>
+      <h2>Touch, don't squint.</h2>
+    </div>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">1</div>
+        <h3>Choose your book</h3>
+        <p>Pick one of three classic stories. Each has its own cast of characters waiting on the shelf.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">2</div>
+        <h3>Find the shapes</h3>
+        <p>Every character is a tactile shape. A <em>star</em> for the hero, a <em>triangle</em> for the villain, a <em>heart</em> for love.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">3</div>
+        <h3>Place them on the board</h3>
+        <p>The closer to the center, the closer to the main character's heart. Distance is meaning.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">4</div>
+        <h3>Connect with strings</h3>
+        <p><span style="color:var(--string-red); font-weight: 900;">Red</span> for conflict. <span style="color:var(--string-green); font-weight: 900;">Green</span> for friendship. <span style="color:var(--string-yellow); font-weight: 900;">Yellow</span> for family. The relationships glow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 ARCHETYPES -->
+<section id="shapes" class="section archetypes">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">The Language of Shapes</div>
+      <h2>Eight shapes for eight kinds of soul.</h2>
+      <p style="max-width: 600px; margin: 1rem auto 0; color: var(--ink-soft);">
+        Inspired by Carl Jung's universal archetypes, these eight forms appear in every story ever told. Touch tells you who someone is before reading does.
+      </p>
+    </div>
+    
+    <div class="archetypes-grid" id="archetypes-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books" class="section books">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Three Stories, Ready to Hold</div>
+      <h2>Which story tonight?</h2>
+    </div>
+    
+    <div class="books-grid">
+      <a href="prince.html" class="book-card">
+        <div class="book-stripe"></div>
+        <div class="book-card-eyebrow">11 Characters · 1943</div>
+        <h3>The Little Prince</h3>
+        <p class="book-author">by Antoine de Saint-Exupéry</p>
+        <p>A pilot stranded in the Sahara meets a boy from a tiny planet. A story about love, loneliness, and seeing with the heart.</p>
+        <div class="book-stats">
+          <div class="book-stat">
+            <strong>11</strong> characters
+          </div>
+          <div class="book-stat">
+            <strong>10</strong> steps to build
+          </div>
+        </div>
+        <span class="book-cta">Build this constellation →</span>
+      </a>
+      
+      <a href="alice.html" class="book-card">
+        <div class="book-stripe"></div>
+        <div class="book-card-eyebrow">10 Characters · 1865</div>
+        <h3>Alice in Wonderland</h3>
+        <p class="book-author">by Lewis Carroll</p>
+        <p>A curious girl falls down a rabbit hole and meets a world of impossible logic, talking creatures, and a tyrant queen.</p>
+        <div class="book-stats">
+          <div class="book-stat">
+            <strong>10</strong> characters
+          </div>
+          <div class="book-stat">
+            <strong>10</strong> steps to build
+          </div>
+        </div>
+        <span class="book-cta">Build this constellation →</span>
+      </a>
+      
+      <a href="charlotte.html" class="book-card">
+        <div class="book-stripe"></div>
+        <div class="book-card-eyebrow">8 Characters · 1952</div>
+        <h3>Charlotte's Web</h3>
+        <p class="book-author">by E. B. White</p>
+        <p>A pig destined for death. A spider determined to save him. A story about friendship, words, and what one small life can mean.</p>
+        <div class="book-stats">
+          <div class="book-stat">
+            <strong>8</strong> characters
+          </div>
+          <div class="book-stat">
+            <strong>10</strong> steps to build
+          </div>
+        </div>
+        <span class="book-cta">Build this constellation →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Why this exists</div>
+      <h2>For the 10% of children who don't read like everyone else.</h2>
+    </div>
+    
+    <div style="max-width: 750px; margin: 0 auto; font-family: 'Fraunces', serif; font-size: 1.2rem; line-height: 1.8; color: var(--ink-soft);">
+      <p style="margin-bottom: 1.5rem;">
+        Roughly <strong style="color: var(--ink);">one in ten children</strong> has dyslexia. For them, by the time they decode the third paragraph, the first character's name is gone. The relationships that give a story its soul stay invisible.
+      </p>
+      <p style="margin-bottom: 1.5rem;">
+        Tactile Constellation translates a book's character network into something you can <em>hold</em>. Built using natural language processing — every shape size, every position is data-driven from the book itself.
+      </p>
+      <p>
+        Touch what would otherwise be invisible. <em>Feel</em> a story instead of reading it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <h3>Made for hands, hearts, and the in-between.</h3>
+    <p>A senior design project · Tactile interfaces for dyslexic readers</p>
+    <div class="footer-credit">
+      Tactile Constellation · 2026 · Jingwen Guo
+    </div>
+  </div>
+</footer>
+
+<script src="characters-data.js"></script>
+<script src="script.js"></script>
+<script>
+  // Populate archetypes
+  const grid = document.getElementById('archetypes-grid');
+  window.ARCHETYPES.forEach(arch => {
+    const div = document.createElement('div');
+    div.className = 'archetype';
+    div.innerHTML = `
+      <div class="archetype-shape" data-shape="${arch.shape}" data-size="60"></div>
+      <div class="archetype-name">${arch.name}</div>
+      <div class="archetype-role">${arch.description}</div>
+    `;
+    grid.appendChild(div);
+  });
+  // Re-trigger shape rendering for newly added elements
+  document.querySelectorAll('[data-shape]').forEach(el => {
+    if (!el.querySelector('svg')) {
+      const shape = el.dataset.shape;
+      const size = parseInt(el.dataset.size) || 60;
+      const color = el.dataset.color || null;
+      renderShape(el, shape, size, color);
+    }
+  });
+</script>
+
+</body>
+</html>

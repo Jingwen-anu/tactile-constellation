@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Character — Tactile Constellation</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38' fill='%23E8B130'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-star">✦</span> Tactile Constellation
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#how">How it works</a></li>
+      <li><a href="index.html#books">All books</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="char-detail-hero">
+  <div class="container">
+    <div class="char-detail-grid">
+      <div class="char-detail-shape" id="hero-shape"></div>
+      <div class="char-name-block">
+        <div class="eyebrow" id="char-eyebrow">FROM THE BOOK</div>
+        <h1 id="char-name">Character Name</h1>
+        <div class="role" id="char-role">Archetype</div>
+        <div class="char-specs">
+          <div class="spec">
+            <div class="label">Shape</div>
+            <div class="value" id="spec-shape">Star</div>
+          </div>
+          <div class="spec">
+            <div class="label">Size</div>
+            <div class="value" id="spec-size">Large</div>
+          </div>
+          <div class="spec">
+            <div class="label">Diameter</div>
+            <div class="value" id="spec-diameter">44mm</div>
+          </div>
+          <div class="spec">
+            <div class="label">Mentions</div>
+            <div class="value" id="spec-frequency">000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section position-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Where to place it</div>
+      <h2>On the board.</h2>
+    </div>
+    <div class="position-card">
+      <h3 id="position-zone">Center</h3>
+      <p class="position-description" id="position-description">Position description here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section about-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Who they are</div>
+      <h2>Their story.</h2>
+    </div>
+    <div class="about-card" id="about-text"></div>
+  </div>
+</section>
+
+<section class="section quote-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label" style="color: var(--gold);">Their famous words</div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text" id="quote-text">Quote here.</p>
+      <p class="quote-context" id="quote-context">— Context</p>
+      <button class="play-btn" id="play-btn" onclick="handlePlay()">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <span class="play-label">Listen</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section relations-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Connected to</div>
+      <h2>Who they're tied to.</h2>
+    </div>
+    <div class="relations-list" id="relations-list"></div>
+  </div>
+</section>
+
+<a href="#" class="back-link" id="back-to-book">← Back to book</a>
+
+<footer class="footer">
+  <div class="footer-content">
+    <h3>Every character matters.</h3>
+    <p>Even the small ones leave a trace in the web.</p>
+    <div class="footer-credit">Tactile Constellation · 2026 · Jingwen Guo</div>
+  </div>
+</footer>
+
+<script src="characters-data.js"></script>
+<script src="script.js"></script>
+<script>
+const bookSlug = getURLParam('book');
+const charKey = getURLParam('char');
+
+if (!bookSlug || !charKey || !window.BOOKS[bookSlug] || !window.BOOKS[bookSlug].characters[charKey]) {
+  document.body.innerHTML = '<div style="padding:5rem 2rem; text-align:center;"><h1>Character not found</h1><p><a href="index.html">Go back home</a></p></div>';
+} else {
+  const book = window.BOOKS[bookSlug];
+  const char = book.characters[charKey];
+  document.title = `${char.name} — ${book.title}`;
+  const heroShape = document.getElementById('hero-shape');
+  heroShape.innerHTML = SHAPES[char.shape](280, '#1A2138');
+  document.getElementById('char-eyebrow').textContent = `FROM ${book.title.toUpperCase()}`;
+  document.getElementById('char-name').textContent = char.name;
+  document.getElementById('char-role').textContent = char.archetype;
+  document.getElementById('spec-shape').textContent = char.shape.charAt(0).toUpperCase() + char.shape.slice(1);
+  document.getElementById('spec-size').textContent = char.sizeLabel;
+  document.getElementById('spec-diameter').textContent = char.sizeDiameter;
+  document.getElementById('spec-frequency').textContent = char.frequency;
+  const positionMap = { 'center': 'The Center', 'near-center': 'Inner Ring', 'middle-ring': 'Middle Ring', 'outer-ring': 'Outer Ring' };
+  document.getElementById('position-zone').textContent = positionMap[char.position] || char.position;
+  document.getElementById('position-description').textContent = char.positionDetail;
+  document.getElementById('about-text').innerHTML = `<p>${char.about}</p>`;
+  document.getElementById('quote-text').textContent = `"${char.quote}"`;
+  document.getElementById('quote-context').textContent = `— ${char.quoteContext}`;
+  const relationsList = document.getElementById('relations-list');
+  if (char.relations && char.relations.length > 0) {
+    char.relations.forEach(rel => {
+      const otherChar = book.characters[rel.to];
+      if (!otherChar) return;
+      const item = document.createElement('a');
+      item.className = 'relation-item';
+      item.href = `character.html?book=${bookSlug}&char=${rel.to}`;
+      item.style.textDecoration = 'none';
+      item.style.color = 'inherit';
+      item.innerHTML = `
+        <div class="relation-string ${rel.type}"></div>
+        <div class="relation-details">
+          <h4>${otherChar.name}</h4>
+          <p>${rel.text}</p>
+        </div>
+        <div class="relation-type">${rel.typeLabel}</div>
+      `;
+      relationsList.appendChild(item);
+    });
+  } else {
+    relationsList.innerHTML = '<p style="text-align:center; color: var(--ink-soft);">No relations recorded yet.</p>';
+  }
+  document.getElementById('back-to-book').href = `${bookSlug}.html`;
+  document.getElementById('back-to-book').innerHTML = `← Back to ${book.title}`;
+  window.handlePlay = function() {
+    const btn = document.getElementById('play-btn');
+    const audioPath = `${bookSlug}-${charKey}.mp3`;
+    playQuote(btn, char.quote, audioPath);
+  };
+}
+</script>
+
+</body>
+</html>
